@@ -1,0 +1,87 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  background: rgba(240, 242, 245, 1);
+  font-size: 14px;
+}
+
+/**
+  element-ui组件样式修改
+ */
+.el-table th {
+  background: #fafafa;
+  color: rgba(0,0,0,.85);
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.el-pagination {
+  text-align: right;
+}
+
+.el-button--primary {
+  background-color: #1890ff;
+  border-color: #1890ff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+  box-shadow: 0 2px 0 rgba(0,0,0,.045);
+}
+
+.el-button {
+  font-weight: 400;
+  height: 32px;
+  padding: 0 15px;
+  user-select: none;
+  touch-action: manipulation;
+  transition: all .3s cubic-bezier(.645,.045,.355,1);
+}
+
+.el-button.is-circle {
+  border-radius: 50%;
+  padding: 8px 8px;
+}
+
+.el-popover {
+  min-width: auto !important;
+}
+
+.el-input__inner {
+  height: 32px;
+  line-height: 32px;
+}
+
+.el-input-group__append {
+  color: #fff;
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.el-avatar--small {
+  width: 24px;
+  height: 24px;
+  line-height: 25px;
+}
+
+/**
+  常用类样式更改
+ */
+.control-area, .filter-area {
+  margin-bottom: 22px;
+}
+
+table {
+  .el-button {
+    padding: 0 10px;
+  }
+  .el-button+.el-button {
+    margin-left: 0;
+  }
+}
+
+.width-220 {
+  width: 220px;
+}
+
+.el-button--primary.is-disabled, .el-button--primary.is-disabled:active,
+.el-button--primary.is-disabled:focus, .el-button--primary.is-disabled:hover {
+  background-color: #909399;
+  border-color: #909399
+}

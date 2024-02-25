@@ -1,0 +1,38 @@
+.keyword-content {
+  width: 80%;
+  margin-bottom: 20px;
+  .title {
+    line-height: 36px;
+  }
+  .content {
+    flex: 1;
+    color: #606266;
+    border: 1px solid #DCDFE6;
+    border-radius: 4px;
+  }
+}
+
+.keyword {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  height: 32px;
+  margin: 6px;
+  font-weight: 400;
+  line-height: 32px;
+  border-radius: 4px;
+  i {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+  }
+}
+
+.button-add {
+  margin: 6px;
+}
+
+.keyword-content + .keyword-content {
+  margin-top: 15px;
+}
