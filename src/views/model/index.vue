@@ -10,9 +10,9 @@
         <el-button type="primary" @click="createFn">创建</el-button>
       </el-form-item>
     </el-form>
-    <el-row class="model-list" v-if="tableData.length">
+    <el-row class="model-list" v-if="tableData.length" :gutter="15">
       <el-col class="model-item" v-for="(item, index) in tableData" :key="index"
-        :span="6" :gutter="15">
+        :span="6">
         <div class="model-item-content">
           <div class="model-item-control">
             <el-button v-if="item.is_valid" class="valid" type="text"

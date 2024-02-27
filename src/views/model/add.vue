@@ -11,7 +11,7 @@
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
     </el-upload>
-    <el-button type="primary">获取特征值</el-button>
+    <el-button type="primary" style="margin-top: 10px;">获取特征值</el-button>
   </div>
 </template>
 

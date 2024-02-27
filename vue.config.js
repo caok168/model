@@ -1,6 +1,6 @@
 // const host = '192.168.11.220:5010';
-// const host = '124.222.117.48:9009';
-const host = 'localhost:9009';
+const host = '124.222.117.48:9009';
+// const host = 'localhost:9009';
 const target = `http://${host}`;
 
 module.exports = {

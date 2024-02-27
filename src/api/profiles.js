@@ -7,8 +7,8 @@ export default {
     return axios.post(`${API_URL}/v1/login`, data)
       .then((res) => res.data);
   },
-  loginGoogle() {
-    return axios.get(`${API_URL}/v1/GoogleLogin`)
+  loginGoogle(data) {
+    return axios.post(`${API_URL}/v1/google_login`, data)
       .then((res) => res.data);
   },
   register(data) {

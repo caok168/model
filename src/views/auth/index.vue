@@ -13,7 +13,7 @@
         <el-form v-if="type!==''" class="login" :model="authForm" :rules="rules"
           ref="authForm">
           <template v-if="type==='login' && !showPassword">
-            <el-button class="google" type="primary" @click="googleLoginFn">Google 登录</el-button>
+            <el-button class="google" type="primary" @click="googleSignIn">Google 登录</el-button>
             <div class="select-tip">or</div>
           </template>
           <el-form-item label="" prop="email" key="email">
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import profiles from '@/api/profiles';
 
 export default {
@@ -72,7 +73,22 @@ export default {
       },
     },
   },
+  mounted() {
+    GoogleAuth.initialize({
+      clientId: '647725136259-3djfro50mv7gdbreml8a8vm1uv4s4kur.apps.googleusercontent.com',
+      scopes: ['profile', 'email'],
+      grantOfflineAccess: true,
+    });
+  },
   methods: {
+    async googleSignIn() {
+      const googleUser = await GoogleAuth.signIn();
+      if (googleUser) {
+        this.googleLoginFn(googleUser);
+      } else {
+        this.$message.error('登录失败');
+      }
+    },
     backFn() {
       this.$refs.authForm.resetFields();
       this.type = '';
@@ -84,8 +100,8 @@ export default {
       }));
       this.$router.push('/model');
     },
-    googleLoginFn() {
-      profiles.loginGoogle().then((data) => {
+    googleLoginFn({ email }) {
+      profiles.loginGoogle({ email }).then((data) => {
         this.$message.success('登录成功');
         this.logincallbackFn(data);
       }).catch(() => {
@@ -146,6 +162,9 @@ export default {
         justify-content: right;
         align-items: center;
         transition: all .3s;
+      }
+      .google {
+        margin-top: 4px;
       }
       .select-tip {
         padding: 12px 0;
