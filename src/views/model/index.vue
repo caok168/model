@@ -15,11 +15,9 @@
         :span="6">
         <div class="model-item-content">
           <div class="model-item-control">
-            <el-button v-if="item.is_valid" class="valid" type="text"
-              icon="el-icon-check"></el-button>
-            <el-button v-else class="invalid" type="text"
-              icon="el-icon-close"></el-button>
-            <el-button class="delete" type="text" icon="el-icon-delete" @click="deleteFn(item)">
+            <el-button class="delete"  type="text" icon="el-icon-delete" @click="deleteFn(item)">
+            </el-button>
+            <el-button type="text" icon="el-icon-document" @click="detailFn(item)">
             </el-button>
           </div>
           <div class="model-item-image">
@@ -28,7 +26,12 @@
           </div>
         </div>
         <div class="title">{{ item.name }}</div>
-        <div class="time">{{ timStampToChar(item.created_at) }}</div>
+        <div class="time">
+          <span>{{ timStampToChar(item.created_at) }}</span>
+          <span :class="item.is_valid ? 'valid' : 'invalid'">
+            特征值{{ item.is_valid ? '已提取' : '未提取' }}
+          </span>
+        </div>
       </el-col>
     </el-row>
     <el-empty v-else description="暂无模型数据"></el-empty>
@@ -89,6 +92,9 @@ export default {
         this.pagination.total = 0;
       });
     },
+    detailFn({ id }) {
+      this.$router.push({ path: 'model/detail', query: { id } });
+    },
     deleteFn({ id }) {
       this.$confirm('此操作将永久删除该模型, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -143,20 +149,22 @@ export default {
   .model-item-control {
     position: absolute;
     top: 0;
-    width: 100%;
+    right: 5px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     z-index: 1;
-    .valid, .invalid {
-      cursor: auto;
+    button {
+      padding: 0;
     }
-    .valid {
-      color: #67C23A;
+    .el-button+.el-button {
+      margin-left: 5px;
     }
-    .invalid {
-      color: #F56C6C;
-    }
+  }
+  .valid {
+    color: #67C23A;
+  }
+  .invalid, .delete {
+    color: #F56C6C;
   }
   .model-item-image {
     position: absolute;
@@ -172,6 +180,8 @@ export default {
   .time {
     font-size: 12px;
     color: #909399;
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>

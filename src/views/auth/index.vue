@@ -3,12 +3,11 @@
     <div class="container">
       <p class="theme">TryOn</p>
       <div class="content">
-        <template v-if="type === ''">
-          <el-button type="primary" @click="type='login'">登 录</el-button>
-          <el-button type="primary" @click="type='register'">注 册</el-button>
-        </template>
-        <div v-else class="back-tip">
-          <el-button type="text" icon="el-icon-arrow-left" @click="backFn">返回</el-button>
+        <div class="back-tip">
+          <el-button v-if="type === 'login'" icon="el-icon-arrow-left" type="text"
+            @click="type='register'">注 册</el-button>
+          <el-button v-else type="text" icon="el-icon-arrow-left"
+            @click="type='login'">登 录</el-button>
         </div>
         <el-form v-if="type!==''" class="login" :model="authForm" :rules="rules"
           ref="authForm">
@@ -46,7 +45,7 @@ import profiles from '@/api/profiles';
 export default {
   data() {
     return {
-      type: '',
+      type: 'login',
       showPassword: false,
       authForm: {
         email: '',
@@ -88,10 +87,6 @@ export default {
       } else {
         this.$message.error('登录失败');
       }
-    },
-    backFn() {
-      this.$refs.authForm.resetFields();
-      this.type = '';
     },
     logincallbackFn(data) {
       localStorage.setItem('userInfo', JSON.stringify({

@@ -9,8 +9,8 @@ export default {
       data: res.data, total: res.headers['x-total'],
     }));
   },
-  add(formData) {
-    return axios.post(`${API_URL}/v1/models/create`, formData)
+  add(data) {
+    return axios.post(`${API_URL}/v1/models/create`, data)
       .then((res) => res.data);
   },
   delete(data) {

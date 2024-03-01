@@ -14,6 +14,10 @@ const router = {
     meta: {},
     path: 'create',
     component: () => import('@/views/model/add.vue'),
+  }, {
+    meta: {},
+    path: 'detail',
+    component: () => import('@/views/model/detail.vue'),
   }],
 };
 
