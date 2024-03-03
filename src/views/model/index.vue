@@ -102,10 +102,7 @@ export default {
         type: 'warning',
       }).then(() => {
         models.delete({ id }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!',
-          });
+          this.$message.success('删除成功!');
           this.searchInitFn();
         });
       }).catch(() => {

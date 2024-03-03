@@ -79,10 +79,7 @@ export default {
             name,
             image_url: file,
           }).then(() => {
-            this.$message({
-              type: 'success',
-              message: '创建成功',
-            });
+            this.$message.success('创建成功');
             this.$router.go(-1);
           });
         }
