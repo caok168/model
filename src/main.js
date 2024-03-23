@@ -5,6 +5,8 @@ import store from './store';
 
 import './el';
 import './assets/index.less';
+import './assets/main.cdn.min.css';
+// import './assets/css/style.css';
 
 const dayjs = require('dayjs');
 

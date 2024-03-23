@@ -1,5 +1,5 @@
 const router = {
-  path: '/model',
+  path: '',
   meta: {
     title: 'Try On',
     icon: 'user',

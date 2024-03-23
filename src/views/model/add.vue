@@ -17,11 +17,11 @@
       </el-upload>
       <el-input v-show="false" v-model="form.file"></el-input>
     </el-form-item>
-    <el-form-item prop="name" label="活动名称">
+    <el-form-item prop="name" label="名称">
       <el-input v-model="form.name" style="width: 360px"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="createFn">创建</el-button>
+      <el-button class="button" type="primary" @click="createFn">创建</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -88,3 +88,17 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="less">
+.button {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: rgb(255, 136, 46);
+  border-width: 0px;
+  width: 120px;
+  height: 40px;
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 8px;
+}
+</style>

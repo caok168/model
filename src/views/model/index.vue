@@ -1,13 +1,14 @@
 <template>
   <div class="questionnaire-content">
     <el-form :model="searchForm" label-width="125px" :inline="true">
-      <el-form-item label="名字">
-        <el-input v-model="searchForm.name" class="width-220">
+      <el-form-item>
+        <!--  -->
+        <el-input v-model="searchForm.name" placeholder="Search model by name" class="width-220 input1">
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="searchInitFn">查找</el-button>
-        <el-button type="primary" @click="createFn">创建</el-button>
+        <el-button class="button" type="primary" @click="searchInitFn">查找</el-button>
+        <el-button class="button" type="primary" @click="createFn">创建</el-button>
       </el-form-item>
     </el-form>
     <el-row class="model-list" v-if="tableData.length" :gutter="15">
@@ -17,20 +18,27 @@
           <div class="model-item-control">
             <el-button class="delete"  type="text" icon="el-icon-delete" @click="deleteFn(item)">
             </el-button>
-            <el-button type="text" icon="el-icon-document" @click="detailFn(item)">
-            </el-button>
+            <!-- <el-button type="text" icon="el-icon-document" @click="detailFn(item)">
+            </el-button> -->
           </div>
-          <div class="model-item-image">
-            <el-image style="width: 100%; height: 100%"
+          <div class="model-item-image" @click="detailFn(item)">
+            <el-image style="width: auto; height: 100%"
               :src="item.upload_image" fit="contain"/>
           </div>
         </div>
-        <div class="title">{{ item.name }}</div>
+        <div class="title">
+          {{ item.name }}
+          <span :class="item.is_valid ? 'valid' : 'invalid'">
+            {{ item.is_valid ? '合格' : '不合格' }}
+          </span>
+        </div>
         <div class="time">
           <span>{{ timStampToChar(item.created_at) }}</span>
-          <span :class="item.is_valid ? 'valid' : 'invalid'">
-            特征值{{ item.is_valid ? '已提取' : '未提取' }}
-          </span>
+        </div>
+        <div>
+          <!-- <span :class="item.is_valid ? 'valid' : 'invalid'">
+            {{ item.is_valid ? '已提取' : '未提取' }}
+          </span> -->
         </div>
       </el-col>
     </el-row>
@@ -79,6 +87,7 @@ export default {
     },
     searchFn() {
       this.tableLoading = true;
+      console.log(this.searchForm)
       models.get({
         ...this.searchForm,
         ...this.pagination,
@@ -138,7 +147,7 @@ export default {
   margin-bottom: 15px;
   .model-item-content {
     position: relative;
-    padding-top: 56.25%;
+    // padding-top: 56.25%;
     border: 1px solid #EBEEF5;
     border-radius: 5px;
     overflow: hidden;
@@ -159,16 +168,21 @@ export default {
   }
   .valid {
     color: #67C23A;
+    float: right;
+    margin-right: 1px;
   }
   .invalid, .delete {
     color: #F56C6C;
+    float: right;
+    margin-right: 1px;
   }
   .model-item-image {
-    position: absolute;
+    // position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    // width: 80%;
+    width: auto;
+    height: 80%;
   }
   .title {
     padding-top: 5px;
@@ -179,6 +193,25 @@ export default {
     color: #909399;
     display: flex;
     justify-content: space-between;
+    margin-top: 8px;
   }
+}
+
+.button {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: rgb(255, 136, 46);
+  border-width: 0px;
+  width: 120px;
+  height: 40px;
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 8px;
+}
+
+.input1 {
+  height: 35px;
+  line-height: 35px;
+  background-color: rgb(241, 242, 246);
 }
 </style>

@@ -3,8 +3,9 @@ import axios from './axios';
 
 export default {
   get({ current, pageSize, ...data }) {
+    console.log(data)
     return axios.post(`${API_URL}/v1/models/list`, {
-      params: { page: current, pagesize: pageSize, ...data },
+      page: current, pagesize: pageSize,name:data.name
     }).then((res) => ({
       data: res.data, total: res.headers['x-total'],
     }));

@@ -1,19 +1,40 @@
 <template>
   <el-container>
     <el-aside :width="width" style="transition: 0.3s">
-      <Menu :collapse="collapse"></Menu>
+        <Menu :collapse="collapse"></Menu>
+        <div style="display: flex;justify-content: center;">
+          <div class="userInfo">
+              <el-dropdown @command="handleCommand">
+                <span class="el-dropdown-link">
+                  <el-avatar size="small" :src="src" style="margin-right: 10px;"
+                            fit="cover" icon="el-icon-user-solid"></el-avatar>
+                  <span class="username">{{ userName }}</span>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item command="profile">
+                    <i class="el-icon-switch-button"/>
+                    个人资料
+                  </el-dropdown-item>
+                  <el-dropdown-item command="logout">
+                    <i class="el-icon-switch-button"/>
+                    退出登录
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+          </div>
+        </div>
     </el-aside>
     <el-container>
       <el-header>
         <div class="control">
           <i :class="['collapse', icon]" @click="changeFn"></i>
           <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/model' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: subTitle.path }">
               {{subTitle.title}}</el-breadcrumb-item>
           </el-breadcrumb>
         </div>
-        <div class="userInfo">
+        <!-- <div class="userInfo">
           <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link">
               <el-avatar size="small" :src="src" style="margin-right: 10px;"
@@ -31,7 +52,7 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-        </div>
+        </div> -->
       </el-header>
       <el-main :class="[{'special': $route.meta.special}]">
         <keep-alive>
@@ -134,6 +155,9 @@ export default {
     padding: 0;
     height: 64px !important;
     line-height: 64px;
+
+    // border-radius: 15px ;
+
     display: flex;
     justify-content: space-between;
     .control {
@@ -168,7 +192,8 @@ export default {
 
   .el-main {
     background: #fff;
-    margin: 16px;
+    // margin: 16px;
+    margin-top: 1px;
   }
 
   .special {
@@ -183,6 +208,27 @@ export default {
   .el-aside {
     height: 100%;
     overflow-x: hidden;
-    background: rgb(0, 21, 41);
+    // background: rgb(0, 21, 41);
+  }
+  .el-dropdown-link{
+    display: flex;
+  }
+  .userInfo{
+    position: absolute;
+    bottom: 20px;
+    width: 230px;
+    height: 55px;
+    line-height: 55px;
+    border-radius: 12px;
+    padding-left: 20px;
+    color: #fff;
+    &:hover{
+      background: #242625;
+    }
+    .username{
+      height: 24px;
+      line-height: 24px;
+      color: #fff;
+    }
   }
 </style>

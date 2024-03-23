@@ -25,16 +25,26 @@ export default {
       return fullPath.replace(/^(\/[^/]*)[/|?].*/, '$1');
     },
     menus() {
-      return this.$router.options.routes[0].children.filter((item) => {
+      console.log("000");
+      let arr = this.$router.options.routes[0].children.filter((item) => {
+        console.log('1111');
+        console.log(this.$router.options.routes[0]);
+        console.log(item);
+
         const obj = item;
         const userInfo = localStorage.getItem('userInfo');
         const { roleId } = userInfo ? JSON.parse(userInfo) : {};
         const { isCommit } = this.$store.state;
         const { hidden, meta: { authority, show } } = obj;
-        obj.disabled = show && roleId !== 1
-          && (!isCommit || isCommit !== 1);
-        return !hidden && (!authority || this.admin);
+        // obj.disabled = show && roleId !== 1
+        //   && (!isCommit || isCommit !== 1);
+        // return !hidden && (!authority || this.admin);
+        return item.meta.show;
       });
+
+      console.log("222");
+      console.log(arr);
+      return arr;
     },
   },
   data() {
@@ -51,7 +61,7 @@ export default {
   },
   methods: {
     goHomeFn() {
-      this.$router.push('/learningPlatform');
+      this.$router.push('/home/main');
     },
   },
 };
@@ -60,14 +70,15 @@ export default {
 <style scoped lang="less">
   .theme {
     cursor: pointer;
-    height: 64px;
+    height: 100px;
     text-align: center;
-    line-height: 64px;
+    line-height: 100px;
     font-weight: 700;
     font-size: 20px;
     overflow: hidden;
     color: #fff;
-    background: rgba(0, 40, 77, 1);
+    // background: rgba(0, 40, 77, 1);
+    background: black;
     transition: all 0.3s ease 0s;
     &.putAway {
       padding: 0 5px;
@@ -78,13 +89,26 @@ export default {
 
   .el-menu {
     border: 0;
-    background: rgb(0, 21, 41);
+    // background: rgb(0, 21, 41);
+    background: rgb(9, 6, 4);
     .el-menu-item {
-      background: rgb(0, 21, 41);
+      // background: rgb(0, 21, 41);
+      background-color: black;
       color: rgba(255, 255, 255, 0.67);
       margin: 4px 0 8px;
-      height: 40px;
-      line-height: 40px;
+      height: 55px;
+      line-height: 55px;
+
+      vertical-align: middle;
+      color: rgb(249, 249, 249);
+      font-family: Manrope, sans-serif;
+      font-size: 16px;
+      font-stretch: 100%;
+      border-radius: 12px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 90%;
+      
       i {
         color: inherit;
         vertical-align: -.125em;
@@ -94,7 +118,12 @@ export default {
       }
     }
     .is-active {
-      background: rgba(24, 144, 255, 1);
+      // background: rgba(24, 144, 255, 1);
+      background: rgb(36, 38, 37);
+      border-radius: 12px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 90%;
       color: rgba(255, 255, 255, 1);
     }
   }
